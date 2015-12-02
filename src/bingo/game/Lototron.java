@@ -62,16 +62,16 @@ public class Lototron {
 		if (field != null) {
 			field.match = true;
 
-			switch (gameType) {
+			switch (this.gameType) {
 			case WIN_CORNER:
 				if (checkCornerWin(ticket)) {
-					gameType = LototronResult.WIN_DIAG;
+					this.gameType = LototronResult.WIN_DIAG;
 					return LototronResult.WIN_CORNER;
 				}
 				break;
 			case WIN_DIAG:
 				if (checkDiagWin(ticket)) {
-					gameType = LototronResult.WIN_FULL;
+					this.gameType = LototronResult.WIN_FULL;
 					return LototronResult.WIN_DIAG;
 				}
 				break;
@@ -82,11 +82,11 @@ public class Lototron {
 				break;
 			}
 
-			if (nextNumberIndex == 33 && gameType != LototronResult.WIN_DIAG) {
-				gameType = LototronResult.WIN_DIAG;
+			if (this.nextNumberIndex == 34) {
+				this.gameType = LototronResult.WIN_DIAG;
 			}
-			if (nextNumberIndex == 38 && gameType != LototronResult.WIN_FULL) {
-				gameType = LototronResult.WIN_FULL;
+			else if (this.nextNumberIndex == 39) {
+				this.gameType = LototronResult.WIN_FULL;
 			}
 
 			return LototronResult.HIT;
@@ -102,8 +102,9 @@ public class Lototron {
 	 * @return
 	 */
 	private boolean checkCornerWin(Ticket ticket) {
-		return nextNumberIndex < 33 && ticket.Fields[0][0].match && ticket.Fields[0][4].match && ticket.Fields[4][0].match
+		boolean checkCorner= this.nextNumberIndex <= 33 && ticket.Fields[0][0].match && ticket.Fields[0][4].match && ticket.Fields[4][0].match
 				&& ticket.Fields[4][4].match;
+		return checkCorner;
 	}
 
 	/**
@@ -113,18 +114,21 @@ public class Lototron {
 	 * @return
 	 */
 	private boolean checkDiagWin(Ticket ticket) {
+		if(nextNumberIndex >38){
+			return false;
+		}
 		boolean checkDiag = true;
 		for (int i = 0; i < ticket.Fields.length; i++) {
 			for (int j = 0; j < ticket.Fields.length; j++) {
 				if (i == j || (i + j) == (Numbers.length - 1)) {
-					if (!ticket.Fields[i][j].match) {
+					if (ticket.Fields[i][j].match==false) {
 						checkDiag = false;
 					}
 				}
 			}
 		}
 
-		return nextNumberIndex < 38 && checkDiag;
+		return checkDiag;
 	}
 
 	/**
@@ -137,7 +141,7 @@ public class Lototron {
 		boolean checkFull = true;
 		for (int i = 0; i < ticket.Fields.length; i++) {
 			for (int j = 0; j < ticket.Fields.length; j++) {
-				if (!ticket.Fields[i][j].match) {
+				if (ticket.Fields[i][j].match == false) {
 					checkFull = false;
 				}
 

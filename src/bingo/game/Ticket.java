@@ -55,7 +55,9 @@ public class Ticket {
 
 	/**
 	 * Search field from ticket by number
-	 * @param i number to find
+	 * 
+	 * @param i
+	 *            number to find
 	 * @return matched field
 	 */
 	public Field findField(int i) {

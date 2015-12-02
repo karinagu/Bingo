@@ -43,10 +43,11 @@ public class Game {
 		counter++;
 		System.out.print(counter + ": " + Lototron.getLetter(number) + " " + number);
 
-		if (result != LototronResult.NONE) {
+		if (result == LototronResult.NONE) {
+			System.out.println();
+		} else {
 			System.out.println(" !" + result);
 			System.out.println(ticket);
-		} else
-			System.out.println();
+		}
 	}
 }
