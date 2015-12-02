@@ -2,11 +2,18 @@ package bingo.game;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 public class LototronTest {
-	
+
+	@Test
+	public void Unique(){
+		int[] a = new int[] {1,2,3,4};
+		Assert.assertTrue(Arrays.binarySearch(a, 51) > -1);
+	}
 	@Test
 	public void testLototronNumbersRange() {
 

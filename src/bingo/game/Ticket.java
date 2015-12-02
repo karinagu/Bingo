@@ -1,9 +1,17 @@
 package bingo.game;
 
+/**
+ * 
+ * Holds info about the Bingo ticket
+ *
+ */
 public class Ticket {
 
 	public Field[][] Fields;
 
+	/**
+	 * Generating Bingo ticket 5x5 numbers on initialisation
+	 */
 	public Ticket() {
 		this.Fields = new Field[5][5];
 		boolean[] unique = new boolean[75];
@@ -22,10 +30,12 @@ public class Ticket {
 				this.Fields[i][j] = new Field(number);
 
 			}
-
 		}
 	}
 
+	/**
+	 * Formatting Bingo ticket for printing
+	 */
 	public String toString() {
 		String print = "+---+---+---+---+---+\n| B | I | N | G | O |\n";
 		String separatorLine = "+---+---+---+---+---+\n";
@@ -43,10 +53,14 @@ public class Ticket {
 
 	}
 
+	/**
+	 * Search field from ticket by number
+	 * @param i number to find
+	 * @return matched field
+	 */
 	public Field findField(int i) {
-		// TODO Auto-generated method stub
-		for (Field field : this.Fields[(i-1)/15]) {
-			if(field.getNumber()==i){
+		for (Field field : this.Fields[(i - 1) / 15]) {
+			if (field.getNumber() == i) {
 				return field;
 			}
 		}
