@@ -2,8 +2,7 @@ package bingo.game;
 
 /**
  * 
- * Lototron generates random Bingo numbers and performs Bingo
- *         ticket checks
+ * Lototron generates random Bingo numbers and performs Bingo ticket checks
  */
 public class Lototron {
 
@@ -52,7 +51,8 @@ public class Lototron {
 	/**
 	 * Checking Bingo ticket for match and winnings
 	 * 
-	 * @param ticket Ticket for check
+	 * @param ticket
+	 *            Ticket for check
 	 * @return check result
 	 */
 	@SuppressWarnings("incomplete-switch")
@@ -84,8 +84,7 @@ public class Lototron {
 
 			if (this.nextNumberIndex == 34) {
 				this.gameType = LototronResult.WIN_DIAG;
-			}
-			else if (this.nextNumberIndex == 39) {
+			} else if (this.nextNumberIndex == 39) {
 				this.gameType = LototronResult.WIN_FULL;
 			}
 
@@ -102,8 +101,8 @@ public class Lototron {
 	 * @return
 	 */
 	private boolean checkCornerWin(Ticket ticket) {
-		boolean checkCorner= this.nextNumberIndex <= 33 && ticket.Fields[0][0].match && ticket.Fields[0][4].match && ticket.Fields[4][0].match
-				&& ticket.Fields[4][4].match;
+		boolean checkCorner = this.nextNumberIndex <= 33 && (ticket.Fields[0][0].match && ticket.Fields[0][4].match
+				&& ticket.Fields[4][0].match && ticket.Fields[4][4].match);
 		return checkCorner;
 	}
 
@@ -114,14 +113,14 @@ public class Lototron {
 	 * @return
 	 */
 	private boolean checkDiagWin(Ticket ticket) {
-		if(nextNumberIndex >38){
+		if (nextNumberIndex > 38) {
 			return false;
 		}
 		boolean checkDiag = true;
 		for (int i = 0; i < ticket.Fields.length; i++) {
 			for (int j = 0; j < ticket.Fields.length; j++) {
 				if (i == j || (i + j) == (Numbers.length - 1)) {
-					if (ticket.Fields[i][j].match==false) {
+					if (ticket.Fields[i][j].match == false) {
 						checkDiag = false;
 					}
 				}
@@ -153,7 +152,8 @@ public class Lototron {
 	/**
 	 * Get character from Bingo number
 	 * 
-	 * @param number Bingo number
+	 * @param number
+	 *            Bingo number
 	 * @return character
 	 */
 	public static char getLetter(int number) {
